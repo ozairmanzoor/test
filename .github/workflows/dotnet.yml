@@ -33,7 +33,7 @@ jobs:
     - name: Test Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.3.7
       with:
-        reports: /PrimeService.Tests/coverage.xml
+        reports: ./test/PrimeService.Tests/coverage.xml
 
         
           
