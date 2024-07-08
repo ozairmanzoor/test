@@ -28,16 +28,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore --configuration Release
     - name: Test
-      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=coverage.xml
+      run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=.\PrimeService.Tests\coverage.xml
 
     - name: Test Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.3.7
-      if: success() || failure()    # run this step even if previous step failed
       with:
-        name: DotNet Tests            # Name of the check run which will be created
-        path: "**/test-results.trx"    # Path to test results
-        reporter: dotnet-trx        # Format of test results
-        fail-on-error: true
+        reports: .\PrimeServiceTests.\coverage.xml
+        
 
     - name: Super-Linter
       # You may pin to the exact commit or the version.
